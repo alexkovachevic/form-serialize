@@ -42,7 +42,7 @@ function serialize(form, options) {
         var element = elements[i];
 
         // ingore disabled fields
-        if ((!options.disabled && element.disabled) || !element.name) {
+        if ((!options.disabled && element.disabled) || (!element.name && !element.id)) {
             continue;
         }
         // ignore anyhting that is not considered a success field
@@ -51,7 +51,7 @@ function serialize(form, options) {
             continue;
         }
 
-        var key = element.name;
+        var key = element.name ? element.name : element.id;
         var val = element.value;
 
         // we can't just use element.value for checkboxes cause some browsers lie to us
